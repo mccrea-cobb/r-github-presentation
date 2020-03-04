@@ -48,11 +48,54 @@ background-size: cover
 
 ???
 
-There are a number of different software available to do version control. You might have heard of a few, most notable are Subversion and Git. Because R users have generally adopted Git (and GitHub) for package development, we will focus on Git today.
+There are a number of different software available to do version control. You might have heard of a few, most notable are Apache Subversion (SVN) and Git. Because R users have generally adopted Git (and GitHub) for package development, we will focus on Git today.
+
+Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+
+---
+How does it work?
+
+
+???
+Each tree node, commit and files has own unique 40 character long SHA-1 representation(We can say that’s the key). Thus those elements are added to a tree data structure which is persisted inside .git/objects folder.
+
+Git handles content in snapshots, one for each commit, and knows how to apply or roll back the change sets between two snapshots.
+
 
 ---
 background-image: url(images/github.jpg)
 background-size: cover
+
+
+---
+# Steps
+
+1. Download ([link](https://git-scm.com/download/win)) and install (requires admin) **git** 
+2. Create a **GitHub** user account ([link](https://github.com/join))
+3. Create an **SSH key** in GitHub (*Settings/SSH and GPG keys/New SSH key*)
+4. Ask to join the FWS GitHub organization ([@USFWS](https://github.com/USFWS))
+5. 
+
+
+---
+# Glossary of terms
+
+**Branch** A named pointer to a specific snapshot. It notes the place where new changes should be applied to when this branch is used. When a change is applied to a branch, then also the branch label moves to the new commit.  
+**Commit** (*verb and noun*): Create a snapshot and the name of the resulting snapshot.  
+**Diff**: Shows the difference of between the working directory and the given branch.  
+**Git**:  
+**GitHub**: A website for hosting projects that use git.  
+**Gitignore**:  
+**History**:  
+**Merge**:  Merges the given branch into the current branch.
+**Origin**:  
+**Pull**:  
+**Push**: Updates remote branch and local copy of the remote branch. Allows you to create new branches in the remote repository.    
+**Revert**:  Rolls back one or more patch sets on the working directory, then creates a new commit on the result.  
+**Shell**:  
+**Snapshot**: A version created by the commit operation.
+**SSA Key**:  
+**Stage**:
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>
