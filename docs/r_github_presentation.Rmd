@@ -35,6 +35,10 @@ solarized_light(
 ###- The basics
 ###- Additional features
 
+???
+
+Abstract
+
 
 ---
 # Why do version control?
@@ -93,14 +97,27 @@ background-size: cover
 
 
 ---
-# Getting started
+# Getting started with GitHub and RStudio
 
-1. Download ([link](https://git-scm.com/download/win)) and install (requires admin) **git** 
-2. Create a **GitHub** user account ([link](https://github.com/join))
-3. Create an **SSH key** in GitHub (*Settings/SSH and GPG keys/New SSH key*)
-4. Ask to join the FWS GitHub organization ([@USFWS](https://github.com/USFWS))
-5. 
+1. Download **git** ([here](https://git-scm.com/download/win)) and install it (requires admin).  
 
+2. In **RStudio**, navigate to "*Tools/Global Options/Git/SVN*" and:  
+    + Check the box for "Enable version control interface for RStudio projects".
+    + Direct RStudio to your git executable file (git.exe). The default location is: "*C:/Program Files/Git/bin/git.exe*".
+    + Create an SSH/RSA key.
+    
+3. In **GitHub**
+    + Create a GitHub user account ([here](https://github.com/join)).
+    + Ask to join the FWS GitHub organization ([@USFWS](https://github.com/USFWS)).
+    + Add the SSH key that you created in RStudio to your GitHub account ("*Settings/SSH and GBG keys/New SSH key*"). You only need to do this once.
+  + Create a GitHub repository in USFWS Github organization by emailing one of the owners listed [here](https://github.com/orgs/USFWS/people?page=2).
+    
+    
+
+---
+# Getting started with GitHub and RStudio
+
+4. In RStudio
 
 ---
 # Glossary of terms
@@ -122,6 +139,7 @@ background-size: cover
 **Snapshot**: A version created by the commit operation.  
 **SSA Key**:  
 **Stage**:   
+
 
 ---
 class: center, middle
