@@ -29,17 +29,31 @@ solarized_light(
 
 # Outline
 
-- What is version control and why should you use it
-- Git
-- GitHub
-    * Getting set up using RStudio
-    * The basics
-    * Additional features
+###- What is version control and why should you use it
+###- What is Git and GitHub
+###- Getting set up using RStudio
+###- The basics
+###- Additional features
 
 
 ---
-# Why version control?
+# Why do version control?
 
+.pull-left[
+<br>
+1. Keep track of the history of changes made to your work
+
+2. Collaborate on your work in synch, manage conflicts
+
+3. Share the most up-to-date version (and other versions) of your work
+
+4. Publish your work (GitPage)
+]
+
+.pull-right[
+![](images/finalfinal.gif)
+
+]
 ???
 
 For straightforward coding project, there is a single person and two points: start and end. However, when the project increases in complexity, there can be other steps in the process, such as bug fixes, feature requests, and reverts (opps!). With many points in the development timeline, it can be really useful to have control over the versions along the development path and the development history overall. 
@@ -90,10 +104,11 @@ background-size: cover
 
 ---
 # Glossary of terms
-
+ 
 **Branch** A named pointer to a specific snapshot. It notes the place where new changes should be applied to when this branch is used. When a change is applied to a branch, then also the branch label moves to the new commit.  
 **Commit** (*verb and noun*): Create a snapshot and the name of the resulting snapshot.  
 **Diff**: Shows the difference of between the working directory and the given branch.  
+**Folk**: A copy of the remote repository that you manage. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
 **Git**:  
 **GitHub**: A website for hosting projects that use git.  
 **Gitignore**:  
