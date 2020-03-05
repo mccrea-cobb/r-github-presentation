@@ -53,11 +53,19 @@ There are a number of different software available to do version control. You mi
 Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 ---
-How does it work?
+# How does it work?
 
+.center[![:scale 75%](images/git_steps.png)]
 
 ???
-Each tree node, commit and files has own unique 40 character long SHA-1 representation(We can say that’s the key). Thus those elements are added to a tree data structure which is persisted inside .git/objects folder.
+
+1. Create some work locally in your working directory. 
+2. **git add** adds these changes to the staging area. 
+3. **git commit** commits these changes to the local repository on your computer (a folder). Each tree node, commit and files has own unique 40 character long SHA-1 representation(We can say that’s the key). Thus those elements are added to a tree data structure which is persisted inside .git/objects folder.
+4. You can repeat this and even just continue to use local version control. 
+5. **git push** pushes the changes that you committed to the remote repository. For the examples today, this would be a repository on GitHub. 
+6. **git pull** updates the local repository with changes from the remote repository.
+
 
 Git handles content in snapshots, one for each commit, and knows how to apply or roll back the change sets between two snapshots.
 
@@ -68,7 +76,7 @@ background-size: cover
 
 
 ---
-# Steps
+# Getting started
 
 1. Download ([link](https://git-scm.com/download/win)) and install (requires admin) **git** 
 2. Create a **GitHub** user account ([link](https://github.com/join))
@@ -93,12 +101,26 @@ background-size: cover
 **Push**: Updates remote branch and local copy of the remote branch. Allows you to create new branches in the remote repository.    
 **Revert**:  Rolls back one or more patch sets on the working directory, then creates a new commit on the result.  
 **Shell**:  
-**Snapshot**: A version created by the commit operation.
+**Snapshot**: A version created by the commit operation.  
 **SSA Key**:  
-**Stage**:
+**Stage**:   
+
+---
+class: center, middle
+
+# Demo
+
+???
+
+1. Creating a repository in GitHub
+2. Creating an Rstudio project with version control
+    a. Cloning a GitHub repository to a local repository.
+    b. Creating an empty RStudio project/package, creating content, and pushing content to an empty GitHub repository.
+3. Installing an R package from GitHub
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>
+<script src="macros.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
