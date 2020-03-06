@@ -4,7 +4,7 @@
     <title>GitHub and R</title>
     <meta charset="utf-8" />
     <meta name="author" content="McCrea Cobb" />
-    <meta name="date" content="2020-03-04" />
+    <meta name="date" content="2020-03-05" />
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
   <body>
@@ -14,7 +14,7 @@ class: center, middle, inverse, title-slide
 # GitHub and R
 ## An Introduction for FWS Biologists
 ### McCrea Cobb
-### 2020-03-04
+### 2020-03-05
 
 ---
 
@@ -31,6 +31,10 @@ class: center, middle, inverse, title-slide
 ###- Getting set up using RStudio
 ###- The basics
 ###- Additional features
+
+???
+
+Abstract
 
 
 ---
@@ -90,13 +94,42 @@ background-size: cover
 
 
 ---
-# Getting started
+# Getting started with GitHub and RStudio
 
-1. Download ([link](https://git-scm.com/download/win)) and install (requires admin) **git** 
-2. Create a **GitHub** user account ([link](https://github.com/join))
-3. Create an **SSH key** in GitHub (*Settings/SSH and GPG keys/New SSH key*)
-4. Ask to join the FWS GitHub organization ([@USFWS](https://github.com/USFWS))
-5. 
+- Download **git** ([here](https://git-scm.com/download/win)) and install it (requires admin).  
+
+- In **RStudio**, navigate to "*Tools/Global Options/Git/SVN*" and:  
+    + Check the box for "Enable version control interface for RStudio projects".
+    + Direct RStudio to your git executable file (git.exe). The default location is: "*C:/Program Files/Git/bin/git.exe*".
+    + Create an SSH/RSA key.
+    
+- In **GitHub**
+    + Create a GitHub user account ([here](https://github.com/join)).
+    + Ask to join the FWS GitHub organization ([@USFWS](https://github.com/USFWS)).
+    + Add the SSH key that you created in RStudio to your GitHub account ("*Settings/SSH and GBG keys/New SSH key*"). You only need to do this once.
+  + Create a GitHub repository in USFWS Github organization by emailing one of the owners listed [here](https://github.com/orgs/USFWS/people?page=2).
+    
+
+---
+# Options...
+
+&lt;br&gt;
+&lt;br&gt;
+## 1. Create a New Version Control RStudio Project  
+&lt;br&gt;
+## 2. Add Version Control to an Existing Rstudio Project
+
+
+---
+# Create a New Version Control RStudio Project
+
+- In RStudio:
+    * Create a *New Project*. Select *Version Control* and then *Git*. Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. Name the project and assign a directory. Save the project.
+    * Create (or copy) your R project files into the new folder containing the R project you just created. 
+    * Under the *Git* tab, check the box next the files and folders that you want included. Select *Commit*. Add Commit Message and Commit them, and then Push them. 
+        
+- In GitHub:
+    * Check your new GitHub repo to verify that your project files are now there.
 
 
 ---
@@ -119,6 +152,7 @@ background-size: cover
 **Snapshot**: A version created by the commit operation.  
 **SSA Key**:  
 **Stage**:   
+
 
 ---
 class: center, middle
