@@ -102,7 +102,8 @@ background-size: cover
 
 - Tell git your name and email address (the one from GitHub).
     + In the shell (*"Tools/Shell..." from new RStudio session*), run:
-```
+
+```{}
 git config --global user.name "your-full-name"
 git config --global user.email "your-email-address"
 ```
