@@ -41,17 +41,15 @@ Abstract
 
 
 ---
-# Why do version control?
+# Why do ~~vrsion~~ version control?
 
 .pull-left[
 <br>
-1. Keep track of the history of changes made to your work
+1. Revert back to previous version of a file
 
-2. Collaborate on your work in synch, manage conflicts
+2. Keep a history of changes made to your work
 
-3. Share the most up-to-date version (and other versions) of your work
-
-4. Publish your work (GitPage)
+3. **Collaborate** on your work simultaneously while managing conflicts
 ]
 
 .pull-right[
@@ -69,9 +67,9 @@ background-size: cover
 
 ???
 
-There are a number of different software available to do version control. You might have heard of a few, most notable are Apache Subversion (SVN) and Git. Because R users have generally adopted Git (and GitHub) for package development, we will focus on Git today.
+There are a number of different software available that can help with version control. You might have heard of a few, two of the most well-known are Apache Subversion (SVN) and Git. Because R users have generally adopted GitHub for package development, we will focus on Git today.
 
-Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+Git is a free open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
 
 ---
 # How does it work?
@@ -80,8 +78,8 @@ Git is a free and open source distributed version control system designed to han
 
 ???
 
-1. Create some work locally in your working directory. 
-2. **git add** adds these changes to the staging area. 
+1. First, you create some work locally in your project directory. 
+2. If you want to start a version history of these edits, the first step is to "stage" the changes. The shell command is **git add**.
 3. **git commit** commits these changes to the local repository on your computer (a folder). Each tree node, commit and files has own unique 40 character long SHA-1 representation(We can say that’s the key). Thus those elements are added to a tree data structure which is persisted inside .git/objects folder.
 4. You can repeat this and even just continue to use local version control. 
 5. **git push** pushes the changes that you committed to the remote repository. For the examples today, this would be a repository on GitHub. 
@@ -97,21 +95,37 @@ background-size: cover
 
 
 ---
-# Getting started with GitHub and RStudio
+# Initial setup
 
-- Download **git** ([here](https://git-scm.com/download/win)) and install it (requires admin).  
+- Install **git** (requires FWS admin). 
+    + Windows: https://git-scm.com/download/win
 
+- Tell git your name and email address (the one from GitHub).
+    + In the shell (*"Tools/Shell..." from new RStudio session*), run:
+```
+git config --global user.name "your-full-name"
+git config --global user.email "your-email-address"
+```
+
+.pull-left[
 - In **RStudio**, navigate to "*Tools/Global Options/Git/SVN*" and:  
     + Check the box for "Enable version control interface for RStudio projects".
     + Direct RStudio to your git executable file (git.exe). The default location is: "*C:/Program Files/Git/bin/git.exe*".
     + Create an SSH/RSA key.
-    
-- In **GitHub**
-    + Create a GitHub user account ([here](https://github.com/join)).
-    + Ask to join the FWS GitHub organization ([@USFWS](https://github.com/USFWS)).
-    + Add the SSH key that you created in RStudio to your GitHub account ("*Settings/SSH and GBG keys/New SSH key*"). You only need to do this once.
-  + Create a GitHub repository in USFWS Github organization by emailing one of the owners listed [here](https://github.com/orgs/USFWS/people?page=2).
-    
+]
+
+.pull-right[
+![](images/ssh_rstudio_marked.png)
+]
+---
+# Initial setup (cont.)
+
+- In **GitHub**:
+    + [Create a GitHub user account](https://github.com/join).
+    + Join the FWS GitHub organization ([@USFWS](https://github.com/USFWS)).
+    + [Add the SSH key](https://github.com/settings/ssh/new) that you created in RStudio to your GitHub account ("*Settings/SSH and GBG keys/New SSH key*"). You only need to do this once.
+  + Create a GitHub repository in the USFWS Github organization by contacting an  [owner](https://github.com/orgs/USFWS/people?query=role%3Aowner).
+
 
 ---
 # Options...
@@ -120,43 +134,151 @@ background-size: cover
 <br>
 ## 1. Create a New Version Control RStudio Project  
 <br>
-## 2. Add Version Control to an Existing Rstudio Project
+## 2. Add Version Control to an RStudio Project
 
 
 ---
 # Create a New Version Control RStudio Project
 
-- In RStudio:
-    * Create a *New Project*. Select *Version Control* and then *Git*. Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. Name the project and assign a directory. Save the project.
-    * Create (or copy) your R project files into the new folder containing the R project you just created. 
-    * Under the *Git* tab, check the box next the files and folders that you want included. Select *Commit*. Add Commit Message and Commit them, and then Push them. 
+.pull-left[
+- Create a GitHub repository, if you've not already.
+
+- Create a new RStudio Project. 
+    + Chose *Version Control* and *Git*. 
+    + Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. 
+    + Name the project and assign a directory. 
+
+- Make local changes and save them.
+]
+
+.pull-right[
+![:scale 90%](images/new_project.png)
+
+![:scale 90%](images/new_project2.png)
+]
+   
+    
+---
+# Create a New Version Control RStudio Project
+
+.pull-left[
+* In RStudio
+    + Navigate to the *Git* tab and check the boxes next the files and folders that you want included. 
+    + Select *Commit*. 
+    + Add a commit message.
+    + Click *Commit* and then *Push*. 
         
 - In GitHub:
-    * Check your new GitHub repo to verify that your project files are now there.
+    * Confirm that your changes were pushed to your GitHub repository.
+]
 
 
 ---
+# Add Version Control to an RStudio Project
+
+.pull-left[
+- Create a GitHub repository
+
+- Open an existing RStudio project. In **Tools/Project Options/Git/SVN**, update **Version Control System** from **(None)** to **Git**. Initialize a new git repository.
+
+- Under the **Git** tab in Rstudio, check files that you want Git to ignore. This is genenally output files and your .Rproj file. 
+
+- Uncheck your ignore files. Check all files that you want to stage. Click **Commit**.
+
+- Add a commit message.
+
+- Click **Commit**. You've created a local Git repository.
+
+]
+
+.pull-right[
+
+![](images/add_git.png)
+]
+???
+
+---
+# Add Version Control to an RStudio Project
+
+- To push your local Git repository to GitHub. In the shell, type:
+
+```{}
+git remote add origin git@github.com:user-name/repository-name.git
+git push -u origin master
+```
+
+- In GitHub:
+    * Confirm that your changes were pushed to your GitHub repository.
+    
+    
+---
 # Glossary of terms
  
-**Branch** A named pointer to a specific snapshot. It notes the place where new changes should be applied to when this branch is used. When a change is applied to a branch, then also the branch label moves to the new commit.  
-**Commit** (*verb and noun*): Create a snapshot and the name of the resulting snapshot.  
-**Diff**: Shows the difference of between the working directory and the given branch.  
-**Folk**: A copy of the remote repository that you manage. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
-**Git**:  
-**GitHub**: A website for hosting projects that use git.  
-**Gitignore**:  
-**History**:  
-**Merge**:  Merges the given branch into the current branch.
-**Origin**:  
-**Pull**:  
-**Push**: Updates remote branch and local copy of the remote branch. Allows you to create new branches in the remote repository.    
-**Revert**:  Rolls back one or more patch sets on the working directory, then creates a new commit on the result.  
-**Shell**:  
-**Snapshot**: A version created by the commit operation.  
-**SSA Key**:  
-**Stage**:   
+**Branch**: A named pointer to a specific snapshot. It notes the place where new changes should be applied to when this branch is used. When a change is applied to a branch, then also the branch label moves to the new commit. 
+
+**Commit** (*verb and noun*): To create a snapshot of your code at a specific time. The name of the resulting snapshot.  
+
+**Diff**: The difference of between the working directory and the given branch.
+
+**Fork**: A copy of the remote repository that you manage. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
+
+**Git**: A free and open source distributed version control system.  
+
+**GitHub**: A website for hosting projects that use Git.  
+
+**Gitignore**: A file that specifies intentionally untracked files that Git should ignore.  
+
+**History**: A series of snapshots committed for a repository over time.
+
+---
+# Glossary of terms (cont.)
+
+**Merge**: A command to integrate version histories from multiple branches into a single branch.  
+
+**Origin**: The shorthand name for the remote repository that a project was originally cloned from.  
+
+**Parent**: The prior commit. Initial commit don't have a parent and merges have two parents.  
+
+**Pull**: A command used to upload local repository contents to a remote repository. This is how you transfer commits from your local repository to the remote repository.  
+
+**Push**: A command used to update a remote branch and local copy of the remote branch. Allows you to create new branches in the remote repository. 
+
+**Revert**: To roll back one or more patch sets on the working directory, then creates a new commit on the result.  
+
+**Shell**: The software that lets you interact with the computer via command line.  
+
+**Snapshot**: A version created by the commit operation.
 
 
+---
+# Glossary of terms (cont.)
+
+**SHA (secure hash algorithm)**: A unique identifier for an individual commit. 
+
+**SSA Key**: An access credential that is used in the Secure Shell network protocol used to encrypt remote communications between machines. 
+
+**Stage**: To prepare a file for a commit.
+
+
+---
+# Links to resources
+
+- Git and GitHub basics
+    + [Understanding the GitHub Workflow](https://guides.github.com/introduction/flow/)
+- Installing Git and get it working smoothly with GitHub and RStudio
+    + [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+    + [The "Git and GitHub" chapter in Hadley Wickham's "R Packages"](http://r-pkgs.had.co.nz/git.html)
+    + [Using Git within RStudio (University of Chicago Computing for Social Sciences)]([Happy Git and GitHub for the useR](https://happygitwithr.com/)
+    + [An introduction to Git and how to use it with RStudio (The R class-R programming for biologists)](https://r-bio.github.io/intro-git-rstudio/)  
+    + [How to use Git with R and RStudio (Reproducible Research Workshop, U. of Zurich)](http://www.geo.uzh.ch/microsite/reproducible_research/post/rr-rstudio-git/)
+
+- Tips and tricks
+    + [How to write a Git Commit Message (Chris Beams)](https://chris.beams.io/posts/git-commit/)
+    
+- Publishing R Markdown documents using GitHub Pages
+    + [GitHub whitepaper](https://resources.github.com/whitepapers/github-and-rstudio/)
+    
+    
 ---
 class: center, middle
 
@@ -164,8 +286,12 @@ class: center, middle
 
 ???
 
-1. Creating a repository in GitHub
-2. Creating an Rstudio project with version control
+1. Creating a new repository in GitHub
+2. Creating an RStudio project with version control
     a. Cloning a GitHub repository to a local repository.
     b. Creating an empty RStudio project/package, creating content, and pushing content to an empty GitHub repository.
 3. Installing an R package from GitHub
+
+
+    
+    
