@@ -211,7 +211,7 @@ git push -u origin master
 - In GitHub:
     * Confirm that your changes were pushed to your GitHub repository.
     
-    
+     
 ---
 # Glossary of terms
  
