@@ -283,16 +283,58 @@ git push -u origin master
 ---
 class: center, middle
 
-# Demo
+# Demo #1
+
+## Creating a New Version Control RStudio Project
+
 
 ???
 
-1. Creating a new repository in GitHub
-2. Creating an RStudio project with version control
-    a. Cloning a GitHub repository to a local repository.
-    b. Creating an empty RStudio project/package, creating content, and pushing content to an empty GitHub repository.
-3. Installing an R package from GitHub
+1. Creating a new RStudio project with Git version control
 
+2. Add content.
+
+3. Stage, Add Commit message and Commit changes to local repository.
+
+4. Create a new repository in GitHub
+
+6.     a. Cloning a GitHub repository to a local repository.
 
     
-    
+
+
+
+---
+class: center, middle
+
+# Demo #2
+
+## Adding Version Control to an RStudio Project
+
+
+---
+class: center, middle
+
+# Bonus Content! (if time allows)
+
+## Installing an R package from GitHub
+
+.left[
+```{r, eval=FALSE}
+
+# Load devtools:
+install.packages(devtools)
+
+# Install package from GitHub:
+devtools::install_github("user-name/package-name)
+
+```
+]
+
+???
+
+Here's a quick and easy way to share an R package from GitHub.
+```{r, eval=FALSE}
+install.packages(devtools)
+devtools::install_github("USFWS/SppDistMonProj")
+```
