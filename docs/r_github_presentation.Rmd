@@ -2,7 +2,7 @@
 title: "GitHub and R"
 subtitle: "An Introduction for FWS Biologists"  
 author: "McCrea Cobb"
-date: '`r Sys.Date()`'
+date: '3/19/2020'
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -27,38 +27,69 @@ solarized_light(
 ```
 
 
-# Outline
-
-###- What is version control and why should you use it
-###- What is Git and GitHub
-###- Getting set up using RStudio
-###- The basics
-###- Additional features
-
-???
-
-Abstract
+background-image: url(images/)
 
 
 ---
-# Why do ~~vrsion~~ version control?
+class: center, middle
+# Outline 
+<br>
+### - What is version control
+### - What is Git and GitHub
+### - Getting set up
+### - The basics
+
+
+???
+- Today, I will review the idea of version control and provide some reasons when and why you should use it. 
+
+- Next, I will describe options for implementing version control for your work. I will argue that Git is an ideal version control system for work with R, largely because it works hand-in-hand with GitHub, the online "hub" for sharing and storing projects using Git.
+
+- I will then give an outview of how to get set up for using Git to manage versions of R project files in RStudio
+
+- Finally, I will cover on the basic function in Git and touch on additional features.
+
+
+---
+background-image: url(images/finalfinal.gif)
+background-size: contain
+
+
+???
+
+I think that we've all struggled with trying to manage versions of a file, as shown in the comic here. For example, a report in a Word document that evolves over time and in response to reviewer comments. To maintain versions, what people often do is rename a file, giving it something like Final1 or finalfinal1 or finalfinal1_revised. A better approach might be to append an ISO date to the file name (something like "report_20200319"). This gives the reader an understanding of when the last changes occurred, but they provide no understanding of what the latest change were, who made the changes and why? Wouldn't that info also be useful to know? What about if multiple authors are both working independently on the same document on the same date??
+
+
+---
+# What is ~~vrshun contro1~~ version control?
 
 .pull-left[
-<br>
-1. Revert back to previous version of a file
 
-2. Keep a history of changes made to your work
 
-3. **Collaborate** on your work simultaneously while managing conflicts
+**Version control**: the management of changes to documents, computer programs, large web sites, and other collections of information.
+
+**Purpose**:
+
+1. To revert to previous version of a file
+
+2. To keep a history of changes
+
+3. To collaborate on your work simultaneously while managing conflicts
 ]
 
 .pull-right[
-![](images/finalfinal.gif)
-
+![](images/version_control.png)
 ]
-???
 
-For straightforward coding project, there is a single person and two points: start and end. However, when the project increases in complexity, there can be other steps in the process, such as bug fixes, feature requests, and reverts (opps!). With many points in the development timeline, it can be really useful to have control over the versions along the development path and the development history overall. 
+
+???
+Before we get started, we need to define what we mean by version control. Version control, as defined by WikiPedia (haha) is "the management of changes to documents, computer programs, large web sites, and other collections of information."
+
+For straightforward coding project, there is a single person and two points: start and end. Commonly versions are managed by saving the files under different file names and putting older versions of files into a folder call something like "archive". Sound familiar??
+
+However, when the project increases in complexity, there can be other steps in the process, such as bug fixes, feature requests, and reverts (opps!). With many points in the development timeline, it can be really useful (and sometimes necessary) to have control over the versions along the development path and the development history overall. 
+
+This is a complicated thing. Wouldn't it be nice if there was software that could do that for you??
 
 
 ---
@@ -67,9 +98,16 @@ background-size: cover
 
 ???
 
-There are a number of different software available that can help with version control. You might have heard of a few, two of the most well-known are Apache Subversion (SVN) and Git. Because R users have generally adopted GitHub for package development, we will focus on Git today.
+There is! There are many software available that can help with version control. You might have heard of a few, two of the most well-known are Apache Subversion (SVN) and Git. 
 
-Git is a free open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency.
+Because this presentation is for FWS R users, I will focus on one of these VCSs called Git. There are a number of appealing things about Git for us:
+
+- Git is open source, 
+- Git is free, 
+- Git is a distributed system (you don't have to rely on a remote repository hub), 
+- you can run Git within RStudio, and
+- R users have generally adopted GitHub (which relies on Git) for package development and sharing.
+
 
 ---
 # How does it work?
@@ -78,20 +116,42 @@ Git is a free open source distributed version control system designed to handle 
 
 ???
 
-1. First, you create some work locally in your project directory. 
-2. If you want to start a version history of these edits, the first step is to "stage" the changes. The shell command is **git add**.
-3. **git commit** commits these changes to the local repository on your computer (a folder). Each tree node, commit and files has own unique 40 character long SHA-1 representation(We can say that’s the key). Thus those elements are added to a tree data structure which is persisted inside .git/objects folder.
-4. You can repeat this and even just continue to use local version control. 
-5. **git push** pushes the changes that you committed to the remote repository. For the examples today, this would be a repository on GitHub. 
+So how does this thing work? Here is a quick rundown of the basic workflow that Git uses to manage versions of file contents:
+
+1. First, you create and edit some files in a local (e.g., your desktop) project directory. 
+2. If you want to start a version history of these edits, the first step is to "stage" the files. You access Git functions in the shell (also referred to as Git BASH), a command line interface. Once you are in the shell and navigated to your file directory, the command to stage all files in a file directory is **git add**. What this does is create a folder (hidden) called **.git** and creates copies of each file's contents as blobs (binary large objects). Each file is unique and identified by a unique SHA1 hash (unique 40 character string).
+
+3. After staging files, the next step is to commit these changes to the local repository on your computer. You do this with the **git commit** command. Along with the commit, you are required to create a commit message. This is a description of what was changed or what bug or problem was addressed. Each tree node, commit and file has own unique 40 character long SHA-1 representation (We can say that’s the key). Together, those elements are added to a tree data structure which is persisted inside .git/objects folder.
+
+4. Rinse and repeat. You can repeat this and even just continue to use local version control. But what if you want to share you're work or you are collaborating with remote partners? This is when you need to share your changes with a remote shared repository.
+
+5. Saving commits from a local repository to a remote repository is a called a **push**. **git push** pushes the changes that you committed to the remote repository. For the examples today, this would be a repository on GitHub. 
+
 6. **git pull** updates the local repository with changes from the remote repository.
 
 
 Git handles content in snapshots, one for each commit, and knows how to apply or roll back the change sets between two snapshots.
 
+---
+Graph of Git commits
+
+
+
+---
+# Best practices
+
+
+???
+
+
 
 ---
 background-image: url(images/github.jpg)
 background-size: cover
+
+
+???
+So how does GitHub factor into all this?
 
 
 ---
@@ -338,5 +398,3 @@ Here's a quick and easy way to share an R package from GitHub.
 install.packages(devtools)
 devtools::install_github("USFWS/SppDistMonProj")
 ```
-
- 
