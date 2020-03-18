@@ -133,14 +133,41 @@ So how does this thing work? Here is a quick rundown of the basic workflow that 
 Git handles content in snapshots, one for each commit, and knows how to apply or roll back the change sets between two snapshots.
 
 ---
-Graph of Git commits
+background-image: url(images/git_tree.png)
 
+
+???
+This graphic shows the structure of Git objects. 
+The first commit (orange) is shown at the bottom, the second commit in the center and the third commit at the top. So, we are working chronologically from bottom to top. 
+
+- The first commit adds a file called "test.txt." The content of this file is saved as a blob (83baae..), which is referenced by the tree object.
+
+- The second commit modifies test.txt, so it creates a new blob. It also adds a new file called "new file".
+
+- The third commit adds a new subdirectory to the working directory that contains the original test.txt file. Notice that instead of creating another new blob, it simply creates a pointer (bak) to the tree in the first commit. Since content of test.txt and new.txt in the working directory are unchanged, the third commit tree points back to the same blobs for these.
+
+
+---
+background-image: url(images/git_branch.png)
+background-size: contain
+
+
+???
+A branch is a fundamental means of launching a seperate line of development with a project. Often a branch is then reconciled and merged with other branches. There are numerous reasons to create branches:
+
+- it can represent a release version for a software project.
+- it can represent a development phase of a project
+- it can isolate development on a feature or fix.
+- it can be the work of an individual contributor.
+
+This graph shows the development of a project over time (left to right). Each circle represents a commit. The main branch (MASTER) is in the center. There are two branches stemming from the main branch. The bottom branch diverged from the master branch by adding or modifying the project to address Feature 1. It was then merged back into the master branch. The upper branch also diveged from the master branch and was merged in a seperate commit after Feature 1.
 
 
 ---
 # Best practices
 
-
+- How often to commit?
+- Bran
 ???
 
 
