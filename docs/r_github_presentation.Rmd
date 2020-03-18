@@ -195,24 +195,36 @@ git config --global user.name "your-full-name"
 git config --global user.email "your-email-address"
 ```
 
+---
+# Initial setup (cont.)
+
 .pull-left[
 - In **RStudio**, navigate to "*Tools/Global Options/Git/SVN*" and:  
+
     + Check the box for "Enable version control interface for RStudio projects".
+    
     + Direct RStudio to your git executable file (git.exe). The default location is: "*C:/Program Files/Git/bin/git.exe*".
+    
     + Create an SSH/RSA key.
 ]
 
 .pull-right[
 ![](images/ssh_rstudio_marked.png)
 ]
+
+
 ---
 # Initial setup (cont.)
 
 - In **GitHub**:
+
     + [Create a GitHub user account](https://github.com/join).
+    
     + Join the FWS GitHub organization ([@USFWS](https://github.com/USFWS)).
+    
     + [Add the SSH key](https://github.com/settings/ssh/new) that you created in RStudio to your GitHub account ("*Settings/SSH and GBG keys/New SSH key*"). You only need to do this once.
-  + Create a GitHub repository in the USFWS Github organization by contacting an  [owner](https://github.com/orgs/USFWS/people?query=role%3Aowner).
+    
+    + Create a GitHub repository in the USFWS Github organization by contacting an  [owner](https://github.com/orgs/USFWS/people?query=role%3Aowner).
 
 
 ---
@@ -233,7 +245,9 @@ git config --global user.email "your-email-address"
 
 - Create a new RStudio Project. 
     + Chose *Version Control* and *Git*. 
+    
     + Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. 
+    
     + Name the project and assign a directory. 
 
 - Make local changes and save them.
@@ -250,14 +264,19 @@ git config --global user.email "your-email-address"
 # Create a New Version Control RStudio Project
 
 .pull-left[
-* In RStudio
-    + Navigate to the *Git* tab and check the boxes next the files and folders that you want included. 
+- In **RStudio**
+
+    + Navigate to the *Git* tab and check the boxes next the files and folders that you want included.
+    
     + Select *Commit*. 
+    
     + Add a commit message.
+    
     + Click *Commit* and then *Push*. 
         
-- In GitHub:
-    * Confirm that your changes were pushed to your GitHub repository.
+- In **GitHub**:
+
+    + Confirm that your changes were pushed to your GitHub repository.
 ]
 
 
@@ -275,7 +294,7 @@ git config --global user.email "your-email-address"
 
 - Add a commit message.
 
-- Click **Commit**. You've created a local Git repository.
+- Click **Commit**. You've created a local Git repository!
 
 ]
 
@@ -296,6 +315,7 @@ git push -u origin master
 ```
 
 - In GitHub:
+
     * Confirm that your changes were pushed to your GitHub repository.
     
      
@@ -306,9 +326,9 @@ git push -u origin master
 
 **Commit** (*verb and noun*): To create a snapshot of your code at a specific time. The name of the resulting snapshot.  
 
-**Diff**: The difference of between the working directory and the given branch.
+**Diff**: The differences of between file versions of a project.
 
-**Fork**: A copy of the remote repository that you manage. Forks let you make changes to a project without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
+**Fork**: A clone of the remote repository that you manage. Forks let you make changes to a project that you don't manage without affecting the original repository. You can fetch updates from or submit changes to the original repository with pull requests.
 
 **Git**: A free and open source distributed version control system.  
 
@@ -341,7 +361,7 @@ git push -u origin master
 ---
 # Glossary of terms (cont.)
 
-**SHA (secure hash algorithm)**: A unique identifier for an individual commit. 
+**SHA1 (secure hash algorithm)**: A unique identifier for an individual commit, tree or blob. 
 
 **SSA Key**: An access credential that is used in the Secure Shell network protocol used to encrypt remote communications between machines. 
 
