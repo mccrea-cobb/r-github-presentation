@@ -37,7 +37,7 @@ background-image: url(images/)
 ## Intro to version control
 ## Intro to Git and GitHub
 ## Getting set up
-## The basics
+## Demo
 ]
 
 ???
@@ -182,7 +182,7 @@ This graph shows the development of a project over time (left to right). Each ci
 .right-column[
 ## How often should you commit?
 
-## When do you create a new branch?
+## When should you create a new branch?
 ]
 
 ???
@@ -207,6 +207,7 @@ So how does GitHub factor into all this?
 
 GitHub is a website and free Git repository hosting service. You can think of it as a cloud-based remote repository. It provides a web-based graphical interface to much of what you have to do locally using command line in Git. You can use it on your own and (if you pay) limit access to your work, but the real beauty of GitHub is that it promotes collaborative development.
 
+
 ---
 background-image: url(images/git-and-github-workflow.png)
 background-size: contain
@@ -229,6 +230,7 @@ Top left shows the local git workflow that I described, including the git add (s
 git config --global user.name "your-full-name"
 git config --global user.email "your-email-address"
 ```
+
 
 ---
 # Initial setup (cont.)
@@ -265,17 +267,17 @@ git config --global user.email "your-email-address"
 
 
 ---
-# Options...
+# Options for getting started...
 
 <br>
 <br>
-## 1. Create a New Version Control RStudio Project  
+## 1. Create a new RStudio project with version control 
 <br>
-## 2. Add Version Control to an RStudio Project
+## 2. Add version control to an existing RStudio project
 
 
 ---
-# Create a New Version Control RStudio Project
+# Create a new RStudio project with version control 
 
 .pull-left[
 - Create a GitHub repository, if you've not already.
@@ -298,7 +300,7 @@ git config --global user.email "your-email-address"
    
     
 ---
-# Create a New Version Control RStudio Project
+# Create a new RStudio project with version control 
 
 .pull-left[
 - In **RStudio**
@@ -308,7 +310,7 @@ git config --global user.email "your-email-address"
     
     + Add a commit message.
     
-    + Click *Commit* and then *Push*. 
+    + Click ![:scale 20%](images/commit_small.png) and then ![:scale 20%](images/push.png). 
         
 - In **GitHub**:
     + Confirm that your changes were pushed to your GitHub repository.
@@ -320,8 +322,9 @@ git config --global user.email "your-email-address"
 ![](images/review_changes2.png)
 ]
 
+
 ---
-# Add Version Control to an RStudio Project
+# Add version control to an RStudio project
 
 .pull-left[
 - Create a GitHub repository
@@ -344,8 +347,9 @@ git config --global user.email "your-email-address"
 ]
 ???
 
+
 ---
-# Add Version Control to an RStudio Project
+# Add version control to an RStudio project
 
 - To push your local Git repository to GitHub. In the shell, type:
 
@@ -377,6 +381,7 @@ git push -u origin master
 **Gitignore**: A file that specifies intentionally untracked files that Git should ignore.  
 
 **History**: A series of snapshots committed for a repository over time.
+
 
 ---
 # Glossary of terms (cont.)
@@ -432,11 +437,10 @@ class: center, middle
 
 # Demo #1
 
-## Creating a New RStudio Project with Version Control
+## Creating a new RStudio project with version control
 
 
 ???
-
 1. Create a new RStudio project with Git version control
 
 2. Add content.
@@ -448,15 +452,12 @@ class: center, middle
 6.     a. Push the local repository to the GitHub remote repo.
 
     
-
-
-
 ---
 class: center, middle
 
 # Demo #2
 
-## Adding Version Control to an Existing RStudio Project
+## Adding version control to an RStudio project
 
 
 ---
