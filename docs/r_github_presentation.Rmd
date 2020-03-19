@@ -31,23 +31,23 @@ background-image: url(images/)
 
 
 ---
-class: center, middle
 # Outline 
 <br>
-### - What is version control
-### - What is Git and GitHub
-### - Getting set up
-### - The basics
-
+.right-column[
+## Intro to version control
+## Intro to Git and GitHub
+## Getting set up
+## The basics
+]
 
 ???
-- Today, I will review the idea of version control and provide some reasons when and why you should use it. 
+- Today, I will introduce (maybe review for many folks) the idea of version control and provide some reasons when and why you should use it. 
 
-- Next, I will describe options for implementing version control for your work. I will argue that Git is an ideal version control system for work with R, largely because it works hand-in-hand with GitHub, the online "hub" for sharing and storing projects using Git.
+- Next, I will describe how Git implements version control for your work. I argue that Git is an ideal version control system for work with R, largely because it works hand-in-hand with GitHub, the online "hub" for sharing and storing projects using Git. I will discuss how GitHub complements version control using Git.
 
-- I will then give an outview of how to get set up for using Git to manage versions of R project files in RStudio
+- I will then give an outview of how to get set up for using Git and GitHub to manage versions of R project files in RStudio
 
-- Finally, I will cover on the basic function in Git and touch on additional features.
+- Finally, I will provide some demos on how to create a new RStudio project with version control and, similarly, how to add version control to an existing RStudio project.
 
 
 ---
@@ -57,7 +57,11 @@ background-size: contain
 
 ???
 
-I think that we've all struggled with trying to manage versions of a file, as shown in the comic here. For example, a report in a Word document that evolves over time and in response to reviewer comments. To maintain versions, what people often do is rename a file, giving it something like Final1 or finalfinal1 or finalfinal1_revised. A better approach might be to append an ISO date to the file name (something like "report_20200319"). This gives the reader an understanding of when the last changes occurred, but they provide no understanding of what the latest change were, who made the changes and why? Wouldn't that info also be useful to know? What about if multiple authors are both working independently on the same document on the same date??
+I think that we've all struggled with trying to manage versions of a file, as shown in the comic here. For example, a report produced as a Word document evolves over time and in response to reviewers' comments. To maintain versions, what people often do is to rename files, giving them names like like "Final1" or "finalfinal1" or "finalfinal1_revised"...
+
+A more standardized approach might be to append an ISO date to the file name (something like "report_20200319"). This gives the reader at least an understanding of when the last changes occurred, but this approach still provides no description of the latest changes, who made the changes, and why? Wouldn't that info also be useful to know? This approach still does not work for common situations such as when multiple authors are both working independently on the same document on the same date.
+
+As you might see where I'm going, a better method is needed.
 
 
 ---
@@ -83,13 +87,15 @@ I think that we've all struggled with trying to manage versions of a file, as sh
 
 
 ???
-Before we get started, we need to define what we mean by version control. Version control, as defined by WikiPedia (haha) is "the management of changes to documents, computer programs, large web sites, and other collections of information."
+This gets us to the concept of version control.
 
-For straightforward coding project, there is a single person and two points: start and end. Commonly versions are managed by saving the files under different file names and putting older versions of files into a folder call something like "archive". Sound familiar??
+Version control, as defined by the great minds of WikiPedia (haha) is "the management of changes to documents, computer programs, large web sites, and other collections of information."
 
-However, when the project increases in complexity, there can be other steps in the process, such as bug fixes, feature requests, and reverts (opps!). With many points in the development timeline, it can be really useful (and sometimes necessary) to have control over the versions along the development path and the development history overall. 
+For straightforward coding project, there is a single person and two points: start and end. Commonly, versions are managed by saving the files under different file names and perhaps older versions of files are moved into a folder call something like "archive". Reverting to an old version is done by reopening a version in the "archive folder". Sound familiar??
 
-This is a complicated thing. Wouldn't it be nice if there was software that could do that for you??
+When the project increases in complexity though, there can be other steps in the process, such as bug fixes, and feature requests. With many points in the development timeline (and points that are often happening concurrently), it can be really useful (and sometimes necessary) to have control over the versions along the development path and the development history overall. 
+
+This is a complicated thing. Wouldn't it be nice if there were software that could do that for you??
 
 
 ---
@@ -98,7 +104,7 @@ background-size: cover
 
 ???
 
-There is! There are many software available that can help with version control. You might have heard of a few, two of the most well-known are Apache Subversion (SVN) and Git. 
+There are! In fact, there are many software available that can help with version control. You might have heard of a few, two of the most well-known are Apache Subversion (SVN) and Git. 
 
 Because this presentation is for FWS R users, I will focus on one of these VCSs called Git. There are a number of appealing things about Git for us:
 
@@ -108,39 +114,46 @@ Because this presentation is for FWS R users, I will focus on one of these VCSs 
 - you can run Git within RStudio, and
 - R users have generally adopted GitHub (which relies on Git) for package development and sharing.
 
+Next I will give an 10,000 ft overview of how Git works to manage versions.
+
 
 ---
 # How does it work?
 
 .center[![:scale 75%](images/git_steps.png)]
 
+
 ???
+So how does this thing work? The workflow is actually pretty understandable for even the non-techy. Here's a broad rundown of the basic workflow that Git uses to manage versions of file contents:
 
-So how does this thing work? Here is a quick rundown of the basic workflow that Git uses to manage versions of file contents:
+1. First, you create and edit project files in a local (e.g., your desktop) working directory. 
 
-1. First, you create and edit some files in a local (e.g., your desktop) project directory. 
-2. If you want to start a version history of these edits, the first step is to "stage" the files. You access Git functions in the shell (also referred to as Git BASH), a command line interface. Once you are in the shell and navigated to your file directory, the command to stage all files in a file directory is **git add**. What this does is create a folder (hidden) called **.git** and creates copies of each file's contents as blobs (binary large objects). Each file is unique and identified by a unique SHA1 hash (unique 40 character string).
+2. If you want to start a version history of these edits, the first step is create a local repository that holds the files that git creates to manage version histories. You access Git functions from the shell (also referred to as Git BASH, command prompt), which is a command line interface accessible from RStudio and directly from Windows. Once you've navigated to your directory in the shell, the command to initialize a repository is simply **git init**. This creates a hidden folder (.git) in your directory that holds the local repository.
+The next step is to add content, referred to as **staging** files. The command to stage files in a file directory is **git add**. What this does is to save the **contents** of each file as blobs (binary large objects) in your local repository. Each blob object is indexed by a unique SHA1 or hash (unique 40 character string). This command then also creates a tree object (you can think of it as an index) that points to the blob objects and provides identifiers and path names for each blob object that you have staged.
 
-3. After staging files, the next step is to commit these changes to the local repository on your computer. You do this with the **git commit** command. Along with the commit, you are required to create a commit message. This is a description of what was changed or what bug or problem was addressed. Each tree node, commit and file has own unique 40 character long SHA-1 representation (We can say that’s the key). Together, those elements are added to a tree data structure which is persisted inside .git/objects folder.
+3. After staging files that you want to track, the next step is to create a snapshot of the index and blobs and commit these changes to your local repository on your computer. This is called a commit, and you do this with the **git commit** command. In the commit, you are required to create a commit message. This is a description of specifically what was updated and if applicable what bug or problem was addressed. Each tree, commit and blob object has own unique 40 character long SHA-1 representation (We can say that’s the key). Together, those elements are added to a tree data structure which lives inside  the ".git/objects" folder.
 
-4. Rinse and repeat. You can repeat this and even just continue to use local version control. But what if you want to share you're work or you are collaborating with remote partners? This is when you need to share your changes with a remote shared repository.
+4. The rest is just rinse and repeat. You can repeatly stage and commit changes to a local repository. Each commit is chained to the previous commit and points back it to for information that is not changed. 
 
-5. Saving commits from a local repository to a remote repository is a called a **push**. **git push** pushes the changes that you committed to the remote repository. For the examples today, this would be a repository on GitHub. 
+5. But what if you want to share your work or if you are collaborating with remote partners? This is when you need to share your changes with a remote  repository, such as GitHub (which we will talk more about later). Saving commits from a local repository to a remote repository is a called a **push**. The command **git push** uploads the local repository contents to the remote repository. For the examples today, this would be a repository on GitHub. 
 
-6. **git pull** updates the local repository with changes from the remote repository.
+6. The opposite of a push is called a **pull**. **git pull** command is used to fetch and download content from a remote repository and update the local repository with that content. 
 
+Git handles content in snapshots, generally for each commit, and knows how to apply or roll back changes between snapshots. You can think of these as revisions, or screenshots from a video.
 
-Git handles content in snapshots, one for each commit, and knows how to apply or roll back the change sets between two snapshots.
 
 ---
 background-image: url(images/git_tree.png)
 
 
 ???
-This graphic shows the structure of Git objects. 
-The first commit (orange) is shown at the bottom, the second commit in the center and the third commit at the top. So, we are working chronologically from bottom to top. 
+Ok, so that describes how you stage, commit and push changes, but you might be wondering, how do multiple commits relate to each other?
 
-- The first commit adds a file called "test.txt." The content of this file is saved as a blob (83baae..), which is referenced by the tree object.
+This graphic shows the structure of Git objects as you make multiple commits over time and develop a version history for a project.
+
+The first commit (orange) is shown at the bottom, the second commit in the center and the third commit at the top. So, we are working chronologically from bottom to top. Each commit builds upon the next and are related. In fact, an earlier commits are called "parent" and the following commit is called a "child".
+
+- In the example shown here, the first commit (again at the bottom) adds a file called "test.txt." The content of this file is saved as a blob (83baae..), which is referenced by the tree object.
 
 - The second commit modifies test.txt, so it creates a new blob. It also adds a new file called "new file".
 
@@ -166,10 +179,22 @@ This graph shows the development of a project over time (left to right). Each ci
 ---
 # Best practices
 
-- How often to commit?
-- Bran
-???
+.right-column[
+## How often should you commit?
 
+## When do you create a new branch?
+]
+
+???
+There are a few questions that can come up for folks newer to Git. One of these is **'How often should you commit?'**. There are many answers to that question:
+- Whenever you get to a point when something works. In practice, that might mean a few times an hr.
+- Not time based: Whenever you add a new feature.
+- As often as possible.
+- Before you call it a day.
+
+Back in the days before kids and a rational fear of death, I used to rock climb, and I like the analogy between making commits in Git and adding protection while climbing. If you are new to the game, you will probably be making a lot of commits. If you have some experience and are very confident in what you are doing, you might run it out longer between commits. The advantage is speed: no having to stop your progress. The obvious disadvantage is increased risk of a really bad situation. The wider the gap between protection, the further a climb will fall if they fall. The further you spread out commits, the more you risk losing if something breaks or fails.
+
+Another questions is: **'when should you create a new branch?'** Again there is no right answer. If you are planning on starting into a side project. When you are working on a specific task (bug fix). Basically, whenever you need code isolation for a development effort.
 
 
 ---
@@ -178,7 +203,17 @@ background-size: cover
 
 
 ???
-So how does GitHub factor into all this?
+So how does GitHub factor into all this? 
+
+GitHub is a website and free Git repository hosting service. You can think of it as a cloud-based remote repository. It provides a web-based graphical interface to much of what you have to do locally using command line in Git. You can use it on your own and (if you pay) limit access to your work, but the real beauty of GitHub is that it promotes collaborative development.
+
+---
+background-image: url(images/git-and-github-workflow.png)
+background-size: contain
+
+
+???
+Top left shows the local git workflow that I described, including the git add (staging) and git commit (committing). Git push and pull are used to share changes from your local repository to your remote Git repository. A **fork** in GitHub allows you to clone any public repository out there into your repository (Sam's repo in this example). You can use this approach to collaborate on their efforts without any risk to the original repository. If you want to merge your commits back to the source repository, you submit what's called a **pull request**, which is reviewed by the owner of the source repository. If there are no conflicts, then the changes can be merged with the source repository. Alternatively, if you have collaborator (such as Carlos) they can clone your repository to a local repository, make local commits, if you provide permission, then push these commits to the remote. 
 
 
 ---
@@ -221,6 +256,8 @@ git config --global user.email "your-email-address"
     + [Create a GitHub user account](https://github.com/join).
     
     + Join the FWS GitHub organization ([@USFWS](https://github.com/USFWS)).
+    
+    + Join or create a Team in FWS GitHub organization (makes it easier to manage permissions).
     
     + [Add the SSH key](https://github.com/settings/ssh/new) that you created in RStudio to your GitHub account ("*Settings/SSH and GBG keys/New SSH key*"). You only need to do this once.
     
@@ -265,20 +302,23 @@ git config --global user.email "your-email-address"
 
 .pull-left[
 - In **RStudio**
-
-    + Navigate to the *Git* tab and check the boxes next the files and folders that you want included.
+    + Navigate to the ![:scale 20%](images/git_tab.png) tab and check the boxes next the files and folders that you want included.
     
-    + Select *Commit*. 
+    + Select ![:scale 20%](images/commit_small.png). 
     
     + Add a commit message.
     
     + Click *Commit* and then *Push*. 
         
 - In **GitHub**:
-
     + Confirm that your changes were pushed to your GitHub repository.
 ]
 
+.pull-right[
+![](images/review_changes.png)
+
+![](images/review_changes2.png)
+]
 
 ---
 # Add Version Control to an RStudio Project
@@ -392,12 +432,12 @@ class: center, middle
 
 # Demo #1
 
-## Creating a New Version Control RStudio Project
+## Creating a New RStudio Project with Version Control
 
 
 ???
 
-1. Creating a new RStudio project with Git version control
+1. Create a new RStudio project with Git version control
 
 2. Add content.
 
@@ -405,7 +445,7 @@ class: center, middle
 
 4. Create a new repository in GitHub
 
-6.     a. Cloning a GitHub repository to a local repository.
+6.     a. Push the local repository to the GitHub remote repo.
 
     
 
@@ -416,7 +456,7 @@ class: center, middle
 
 # Demo #2
 
-## Adding Version Control to an RStudio Project
+## Adding Version Control to an Existing RStudio Project
 
 
 ---
