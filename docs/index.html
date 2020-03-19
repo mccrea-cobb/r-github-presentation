@@ -53,9 +53,9 @@ background-size: contain
 
 ???
 
-I think that we've all struggled with trying to manage versions of a file, as shown in the comic here. For example, a report produced as a Word document evolves over time and in response to reviewers' comments. To maintain versions, what people often do is to rename files, giving them names like like "Final1" or "finalfinal1" or "finalfinal1_revised"...
+I think that we've all struggled with trying to manage versions of a file, as shown in the comic here. In our case, an R script evolves over time and sometimes in response to input from multiple collaborators. To maintain versions, what people often do is to rename files, giving them names like like "Final1" or "finalfinal1" or "finalfinal1_revised"...
 
-A more standardized approach might be to append an ISO date to the file name (something like "report_20200319"). This gives the reader at least an understanding of when the last changes occurred, but this approach still provides no description of the latest changes, who made the changes, and why? Wouldn't that info also be useful to know? This approach still does not work for common situations such as when multiple authors are both working independently on the same document on the same date.
+Another approach might be to append an ISO date to the file name (something like "myscript_20200319"). This at least gives the reader an understanding of when the last changes probably occurred, but this approach still provides no description of what was last changed, who made the changes, and why? Wouldn't that info also be useful to know? This approach also does not work for common situations such as when multiple authors are both working independently on the same project on the same date.
 
 As you might see where I'm going, a better method is needed.
 
@@ -66,13 +66,13 @@ As you might see where I'm going, a better method is needed.
 .pull-left[
 
 
-**Version control**: the management of changes to documents, computer programs, large web sites, and other collections of information.
+**Version control**: the management of changes to documents, computer programs, web sites, and other collections of information (data).
 
 **Purpose**:
 
 1. To revert to previous version of a file
 
-2. To keep a history of changes
+2. To keep a history of changes (for yourself and others)
 
 3. To collaborate on your work simultaneously while managing conflicts
 ]
@@ -86,6 +86,8 @@ As you might see where I'm going, a better method is needed.
 This gets us to the concept of version control.
 
 Version control, as defined by the great minds of WikiPedia (haha) is "the management of changes to documents, computer programs, large web sites, and other collections of information."
+
+The purpose of version control are to..
 
 For straightforward coding project, there is a single person and two points: start and end. Commonly, versions are managed by saving the files under different file names and perhaps older versions of files are moved into a folder call something like "archive". Reverting to an old version is done by reopening a version in the "archive folder". Sound familiar??
 
@@ -122,16 +124,16 @@ Next I will give an 10,000 ft overview of how Git works to manage versions.
 ???
 So how does this thing work? The workflow is actually pretty understandable for even the non-techy. Here's a broad rundown of the basic workflow that Git uses to manage versions of file contents:
 
-1. First, you create and edit project files in a local (e.g., your desktop) working directory. 
+1. First, you create and edit project files in a local (e.g., your desktop) **working directory**. 
 
-2. If you want to start a version history of these edits, the first step is create a local repository that holds the files that git creates to manage version histories. You access Git functions from the shell (also referred to as Git BASH, command prompt), which is a command line interface accessible from RStudio and directly from Windows. Once you've navigated to your directory in the shell, the command to initialize a repository is simply **git init**. This creates a hidden folder (.git) in your directory that holds the local repository.
-The next step is to add content, referred to as **staging** files. The command to stage files in a file directory is **git add**. What this does is to save the **contents** of each file as blobs (binary large objects) in your local repository. Each blob object is indexed by a unique SHA1 or hash (unique 40 character string). This command then also creates a tree object (you can think of it as an index) that points to the blob objects and provides identifiers and path names for each blob object that you have staged.
+2. If you want to start a version history of these edits, the first step is create a local repository (**localrepo** here) that holds the files that git creates to manage version histories. You access Git functions from the shell (the Git BASH, although the command prompt also works), which is a command line interface accessible from RStudio and directly from Windows. Once you've navigated to your directory in the shell, the command to initialize a repository is simply **git init**. This creates a hidden folder (.git) in your working directory that houses the local repository.
+The next step is to add your content, referred to as **staging** files. The command to stage files from your file directory is **git add**. What this does is to save the **contents** of each file as blobs (binary large objects) in your local repository. Each blob object is indexed by a unique SHA (unique 40 character string, referred to as the key or hash). This command then also creates a tree object (you can think of it as an index) that points to the blob objects and provides identifiers and path names for each blob object that you have staged.
 
-3. After staging files that you want to track, the next step is to create a snapshot of the index and blobs and commit these changes to your local repository on your computer. This is called a commit, and you do this with the **git commit** command. In the commit, you are required to create a commit message. This is a description of specifically what was updated and if applicable what bug or problem was addressed. Each tree, commit and blob object has own unique 40 character long SHA-1 representation (We can say that’s the key). Together, those elements are added to a tree data structure which lives inside  the ".git/objects" folder.
+3. After staging files that you want to track, the next step is to create a snapshot of the index and blobs and commit these changes to your local repository on your computer. This is called a commit, and you do this with the **git commit** command. In the commit, you are required to create a commit message. This is a description of specifically what was updated and if applicable what bug or problem was addressed. Each tree, commit and blob object has it's own unique hash. Together, those elements are added to a tree data structure which lives inside  the ".git/objects" folder.
 
-4. The rest is just rinse and repeat. You can repeatly stage and commit changes to a local repository. Each commit is chained to the previous commit and points back it to for information that is not changed. 
+4. The rest of the workflow is just rinsing and repeating. You repeatly stage and commit changes to a local repository. Each commit is chained to the previous commit and points back it to for information that is unchanged. 
 
-5. But what if you want to share your work or if you are collaborating with remote partners? This is when you need to share your changes with a remote  repository, such as GitHub (which we will talk more about later). Saving commits from a local repository to a remote repository is a called a **push**. The command **git push** uploads the local repository contents to the remote repository. For the examples today, this would be a repository on GitHub. 
+5. So that's the local repo workflow, but what if you want to share your work or if you are collaborating with remote partners? This is when you need to share your changes with a remote  repository, such as GitHub (which we will talk more about later). Saving commits from a local repository to a remote repository is a called a **push**. The command **git push** uploads the local repository contents to the remote repository. For the examples today, this would be a repository on GitHub. 
 
 6. The opposite of a push is called a **pull**. **git pull** command is used to fetch and download content from a remote repository and update the local repository with that content. 
 
@@ -143,7 +145,7 @@ background-image: url(images/git_tree.png)
 
 
 ???
-Ok, so that describes how you stage, commit and push changes, but you might be wondering, how do multiple commits relate to each other?
+Ok, so that describes how you stage, commit and push changes, but you might be wondering, how do a series of commits relate to each other?
 
 This graphic shows the structure of Git objects as you make multiple commits over time and develop a version history for a project.
 
@@ -154,6 +156,8 @@ The first commit (orange) is shown at the bottom, the second commit in the cente
 - The second commit modifies test.txt, so it creates a new blob. It also adds a new file called "new file".
 
 - The third commit adds a new subdirectory to the working directory that contains the original test.txt file. Notice that instead of creating another new blob, it simply creates a pointer (bak) to the tree in the first commit. Since content of test.txt and new.txt in the working directory are unchanged, the third commit tree points back to the same blobs for these.
+
+Ok, so that is the basic workflow for what's call a single **branch**. So how can multiple people work on a single project at the same time?
 
 
 ---
@@ -178,17 +182,29 @@ This graph shows the development of a project over time (left to right). Each ci
 .right-column[
 ## How often should you commit?
 
+## What about those commit messages?
+
+## Should I commit generated files?
+
 ## When should you create a new branch?
 ]
 
 ???
 There are a few questions that can come up for folks newer to Git. One of these is **'How often should you commit?'**. There are many answers to that question:
+- Keep commits small and focused
 - Whenever you get to a point when something works. In practice, that might mean a few times an hr.
 - Not time based: Whenever you add a new feature.
 - As often as possible.
 - Before you call it a day.
 
-Back in the days before kids and a rational fear of death, I used to rock climb, and I like the analogy between making commits in Git and adding protection while climbing. If you are new to the game, you will probably be making a lot of commits. If you have some experience and are very confident in what you are doing, you might run it out longer between commits. The advantage is speed: no having to stop your progress. The obvious disadvantage is increased risk of a really bad situation. The wider the gap between protection, the further a climb will fall if they fall. The further you spread out commits, the more you risk losing if something breaks or fails.
+Back in the days before kids and a rational fear of death, I used to rock climb, so I like Hadley Wickham's analogy between making commits in Git and adding protection while climbing. If you are new to the game, you will probably be making a lot of commits. If you have some experience and are very confident in what you are doing, you might run it out longer between commits. The advantage is speed: no having to stop your progress. The obvious disadvantage is increased risk of a really bad situation. The wider the gap between protection, the further a climb will fall if they fall. The further you spread out commits, the more you risk losing if something breaks or fails.
+
+What about commit messages? Descriptive commit messages that concisely describe the change will make life easier for future you and everyone else. Explains "what" and "why" not "how".
+- The first line is the subject line. Seperate the body of the message (if you it) from the subject with a space.
+- Use the imperative mood for the subject ("Fix typo in introduction to user guide" rather than "Fixes typo in introduction to user guide" or "Fixed typo in introduction to user guide"). No periods. This is Git's default.
+
+Don’t commit generated files
+Generally, only those files should be committed that have taken manual effort to create, and cannot be re-generated. Files can be re-generated at will can be generated any time, and normally don’t work git's line-based tracking as well. It is useful to add a .gitignore file in your repository’s root to automatically tell Git which files or paths you don’t want to track. In our case this includes the .RProj file and most derived data generated by scripts.
 
 Another questions is: **'when should you create a new branch?'** Again there is no right answer. If you are planning on starting into a side project. When you are working on a specific task (bug fix). Basically, whenever you need code isolation for a development effort.
 
@@ -199,7 +215,7 @@ background-size: cover
 
 
 ???
-So how does GitHub factor into all this? 
+So I've talked a lot about Git. How does GitHub factor into all this? 
 
 GitHub is a website and free Git repository hosting service. You can think of it as a cloud-based remote repository. It provides a web-based graphical interface to much of what you have to do locally using command line in Git. You can use it on your own and (if you pay) limit access to your work, but the real beauty of GitHub is that it promotes collaborative development.
 
@@ -219,8 +235,8 @@ Top left shows the local git workflow that I described, including the git add (s
 - Install **git** (requires FWS admin). 
     + Windows: https://git-scm.com/download/win
 
-- Tell git your name and email address (the one from GitHub).
-    + In the shell (*"Tools/Shell..." from new RStudio session*), run:
+- Introduce yourself. Tell git your name and email address (the same one from GitHub).
+    + In the **shell** (*"Tools/Shell..." from new RStudio session*), run:
 
 ```{}
 git config --global user.name "your-full-name"
@@ -263,64 +279,18 @@ git config --global user.email "your-email-address"
 
 
 ---
-# Options for getting started...
+# Two options for getting started...
 
 &lt;br&gt;
 &lt;br&gt;
-## 1. Create a new RStudio project with version control 
 &lt;br&gt;
-## 2. Add version control to an existing RStudio project
+## 1. Add version control to an RStudio project
 
-
----
-# Create a new RStudio project with version control 
-
-.pull-left[
-- Create a GitHub repository, if you've not already.
-
-- Create a new RStudio Project. 
-    + Chose *Version Control* and *Git*. 
-    
-    + Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. 
-    
-    + Name the project and assign a directory. 
-
-- Make local changes and save them.
-]
-
-.pull-right[
-![:scale 90%](images/new_project.png)
-
-![:scale 90%](images/new_project2.png)
-]
-   
-    
----
-# Create a new RStudio project with version control 
-
-.pull-left[
-- In **RStudio**
-    + Navigate to the ![:scale 20%](images/git_tab.png) tab and check the boxes next the files and folders that you want included.
-    
-    + Select ![:scale 20%](images/commit_small.png). 
-    
-    + Add a commit message.
-    
-    + Click ![:scale 20%](images/commit_small.png) and then ![:scale 20%](images/push.png). 
-        
-- In **GitHub**:
-    + Confirm that your changes were pushed to your GitHub repository.
-]
-
-.pull-right[
-![](images/review_changes.png)
-
-![](images/review_changes2.png)
-]
-
+## 2. Clone a GitHub repository
+ 
 
 ---
-# Add version control to an RStudio project
+# 1. Add version control to an RStudio project
 
 .pull-left[
 - Create a GitHub repository
@@ -345,7 +315,7 @@ git config --global user.email "your-email-address"
 
 
 ---
-# Add version control to an RStudio project
+# 1. Add version control to an RStudio project
 
 - To push your local Git repository to GitHub. In the shell, type:
 
@@ -357,7 +327,56 @@ git push -u origin master
 - In GitHub:
 
     * Confirm that your changes were pushed to your GitHub repository.
+
+
+---
+# 2. Clone a GitHub repository
+
+.pull-left[
+- Create a GitHub repository, if you've not already.
+
+- Create a new RStudio Project. 
+    + Chose *Version Control* and *Git*. 
     
+    + Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. 
+    
+    + Name the project and assign a directory. 
+
+- Make local changes and save them.
+]
+
+.pull-right[
+![:scale 90%](images/new_project.png)
+
+![:scale 90%](images/new_project2.png)
+]
+   
+    
+---
+# 2. Clone a GitHub repository
+
+.pull-left[
+- In **RStudio**
+    + Navigate to the ![:scale 20%](images/git_tab.png) tab and check the boxes next the files and folders that you want included.
+    
+    + Select ![:scale 20%](images/commit_small.png). 
+    
+    + Add a commit message.
+    
+    + Click ![:scale 20%](images/commit_small.png) and then ![:scale 20%](images/push.png). 
+        
+- In **GitHub**:
+    + Confirm that your changes were pushed to your GitHub repository.
+]
+
+.pull-right[
+![](images/review_changes.png)
+
+![](images/review_changes2.png)
+]
+
+
+
      
 ---
 # Glossary of terms

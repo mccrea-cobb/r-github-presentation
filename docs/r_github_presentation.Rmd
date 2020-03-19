@@ -283,64 +283,18 @@ git config --global user.email "your-email-address"
 
 
 ---
-# Options for getting started...
+# Two options for getting started...
 
 <br>
 <br>
-## 1. Create a new RStudio project with version control 
 <br>
-## 2. Add version control to an existing RStudio project
+## 1. Add version control to an RStudio project
 
-
----
-# Create a new RStudio project with version control 
-
-.pull-left[
-- Create a GitHub repository, if you've not already.
-
-- Create a new RStudio Project. 
-    + Chose *Version Control* and *Git*. 
-    
-    + Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. 
-    
-    + Name the project and assign a directory. 
-
-- Make local changes and save them.
-]
-
-.pull-right[
-![:scale 90%](images/new_project.png)
-
-![:scale 90%](images/new_project2.png)
-]
-   
-    
----
-# Create a new RStudio project with version control 
-
-.pull-left[
-- In **RStudio**
-    + Navigate to the ![:scale 20%](images/git_tab.png) tab and check the boxes next the files and folders that you want included.
-    
-    + Select ![:scale 20%](images/commit_small.png). 
-    
-    + Add a commit message.
-    
-    + Click ![:scale 20%](images/commit_small.png) and then ![:scale 20%](images/push.png). 
-        
-- In **GitHub**:
-    + Confirm that your changes were pushed to your GitHub repository.
-]
-
-.pull-right[
-![](images/review_changes.png)
-
-![](images/review_changes2.png)
-]
-
+## 2. Clone a GitHub repository
+ 
 
 ---
-# Add version control to an RStudio project
+# 1. Add version control to an RStudio project
 
 .pull-left[
 - Create a GitHub repository
@@ -365,7 +319,7 @@ git config --global user.email "your-email-address"
 
 
 ---
-# Add version control to an RStudio project
+# 1. Add version control to an RStudio project
 
 - To push your local Git repository to GitHub. In the shell, type:
 
@@ -377,7 +331,56 @@ git push -u origin master
 - In GitHub:
 
     * Confirm that your changes were pushed to your GitHub repository.
+
+
+---
+# 2. Clone a GitHub repository
+
+.pull-left[
+- Create a GitHub repository, if you've not already.
+
+- Create a new RStudio Project. 
+    + Chose *Version Control* and *Git*. 
     
+    + Enter your repository's URL. **Note that this is password-protected SSH URL (_NOT THE HTTP URL!_)**. For example *git@github.com:your-user-name/your-repo.git*. 
+    
+    + Name the project and assign a directory. 
+
+- Make local changes and save them.
+]
+
+.pull-right[
+![:scale 90%](images/new_project.png)
+
+![:scale 90%](images/new_project2.png)
+]
+   
+    
+---
+# 2. Clone a GitHub repository
+
+.pull-left[
+- In **RStudio**
+    + Navigate to the ![:scale 20%](images/git_tab.png) tab and check the boxes next the files and folders that you want included.
+    
+    + Select ![:scale 20%](images/commit_small.png). 
+    
+    + Add a commit message.
+    
+    + Click ![:scale 20%](images/commit_small.png) and then ![:scale 20%](images/push.png). 
+        
+- In **GitHub**:
+    + Confirm that your changes were pushed to your GitHub repository.
+]
+
+.pull-right[
+![](images/review_changes.png)
+
+![](images/review_changes2.png)
+]
+
+
+
      
 ---
 # Glossary of terms
