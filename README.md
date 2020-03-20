@@ -1,4 +1,4 @@
-# [R and Git: An Introduction for FWS Biologist](https://mccrea-cobb.github.io/r-github-presentation/#1)
+# [GitHub and R: An Introduction for FWS Biologist](https://mccrea-cobb.github.io/r-github-presentation/#1)
 
 ## Abstract
 
